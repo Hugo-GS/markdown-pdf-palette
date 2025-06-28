@@ -61,7 +61,7 @@ const SidebarOptions = ({
               </div>
               
               <div className="flex items-center space-x-2">
-                <Switch id="pdf-preview" checked={showPDFPreview} onCheckedChange={onTogglePDFPreview} />
+                
                 
               </div>
             </CardContent>
