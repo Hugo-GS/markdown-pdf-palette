@@ -1,4 +1,3 @@
-
 import { useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -24,14 +23,14 @@ const PDFPreview = ({ content, showMarkdownSyntax, websiteName }: PDFPreviewProp
         .replace(/^\s*[-\*\+]\s+/gm, '• ');
     }
 
-    // Colorear solo los símbolos de markdown para PDF
+    // Usar los colores exactos del CSS con valores OKLCH
     return text
-      .replace(/(#{1,6})\s/g, '<span style="color: #22c55e">$1</span> ')
-      .replace(/(\*\*)(.*?)(\*\*)/g, '<span style="color: #ec4899">$1</span>$2<span style="color: #ec4899">$3</span>')
-      .replace(/(?<!\*)(\*)(?!\*)(.*?)(?<!\*)(\*)(?!\*)/g, '<span style="color: #f97316">$1</span>$2<span style="color: #f97316">$3</span>')
-      .replace(/(`)(.*?)(`)/g, '<span style="color: #2563eb">$1</span>$2<span style="color: #2563eb">$3</span>')
-      .replace(/(\[)(.*?)(\])(\()(.*?)(\))/g, '<span style="color: #dc2626">$1</span>$2<span style="color: #dc2626">$3$4</span>$5<span style="color: #dc2626">$6</span>')
-      .replace(/^(\s*)([-\*\+])(\s+)/gm, '$1<span style="color: #7c3aed">$2</span>$3');
+      .replace(/(#{1,6})\s/g, '<span style="color: oklch(0.4534 0.0911 168.6646)">$1</span> ')
+      .replace(/(\*\*)(.*?)(\*\*)/g, '<span style="color: oklch(0.5924 0.2025 355.8943)">$1</span>$2<span style="color: oklch(0.5924 0.2025 355.8943)">$3</span>')
+      .replace(/(?<!\*)(\*)(?!\*)(.*?)(?<!\*)(\*)(?!\*)/g, '<span style="color: oklch(0.5808 0.1732 39.5003)">$1</span>$2<span style="color: oklch(0.5808 0.1732 39.5003)">$3</span>')
+      .replace(/(`)(.*?)(`)/g, '<span style="color: oklch(0.6437 0.1019 187.3840)">$1</span>$2<span style="color: oklch(0.6437 0.1019 187.3840)">$3</span>')
+      .replace(/(\[)(.*?)(\])(\()(.*?)(\))/g, '<span style="color: oklch(0.5863 0.2064 27.1172)">$1</span>$2<span style="color: oklch(0.5863 0.2064 27.1172)">$3$4</span>$5<span style="color: oklch(0.5863 0.2064 27.1172)">$6</span>')
+      .replace(/^(\s*)([-\*\+])(\s+)/gm, '$1<span style="color: oklch(0.6149 0.1394 244.9273)">$2</span>$3');
   };
 
   if (showMarkdownSyntax) {
