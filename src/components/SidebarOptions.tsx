@@ -91,7 +91,7 @@ const SidebarOptions = ({
 
           <div className="space-y-3">
             <Button 
-              onClick={onTogglePDFPreview}
+              onClick={() => onTogglePDFPreview(!showPDFPreview)}
               variant="outline" 
               className="w-full justify-start gap-2"
             >
