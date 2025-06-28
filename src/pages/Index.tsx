@@ -1,11 +1,9 @@
-
 import { useState } from 'react';
 import MarkdownEditor from '@/components/MarkdownEditor';
 import MarkdownPreview from '@/components/MarkdownPreview';
 import SidebarOptions from '@/components/SidebarOptions';
 import PDFPreview from '@/components/PDFPreview';
 import { usePDFGenerator } from '@/hooks/usePDFGenerator';
-
 const Index = () => {
   const [markdownContent, setMarkdownContent] = useState(`# Mi Documento Markdown
 
@@ -46,34 +44,25 @@ saludar("Mundo");
 > Este es un bloque de cita que resalta información importante.
 
 ¡Personaliza este contenido y genera tu PDF!`);
-
   const [showMarkdownSyntax, setShowMarkdownSyntax] = useState(true);
   const [websiteName, setWebsiteName] = useState('MarkdownToPDF');
   const [showPDFPreview, setShowPDFPreview] = useState(false);
-
-  const { generatePDF } = usePDFGenerator({ websiteName });
-
+  const {
+    generatePDF
+  } = usePDFGenerator({
+    websiteName
+  });
   const handleGeneratePDF = () => {
     generatePDF(markdownContent, showMarkdownSyntax);
   };
-
-  return (
-    <div className="min-h-screen bg-background flex">
+  return <div className="min-h-screen bg-background flex">
       {/* Sidebar */}
-      <SidebarOptions
-        showMarkdownSyntax={showMarkdownSyntax}
-        onToggleMarkdownSyntax={setShowMarkdownSyntax}
-        websiteName={websiteName}
-        onWebsiteNameChange={setWebsiteName}
-        onGeneratePDF={handleGeneratePDF}
-        showPDFPreview={showPDFPreview}
-        onTogglePDFPreview={setShowPDFPreview}
-      />
+      <SidebarOptions showMarkdownSyntax={showMarkdownSyntax} onToggleMarkdownSyntax={setShowMarkdownSyntax} websiteName={websiteName} onWebsiteNameChange={setWebsiteName} onGeneratePDF={handleGeneratePDF} showPDFPreview={showPDFPreview} onTogglePDFPreview={setShowPDFPreview} />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="border-b border-border p-4 bg-card">
+        <div className="border-b border-border p-4 bg-card py-0">
           <h1 className="text-2xl font-bold text-primary">
             Markdown to PDF Converter
           </h1>
@@ -84,46 +73,25 @@ saludar("Mundo");
 
         {/* Content Area */}
         <div className="flex-1 flex gap-4 p-4">
-          {!showPDFPreview ? (
-            <>
+          {!showPDFPreview ? <>
               {/* Editor */}
-              <MarkdownEditor
-                value={markdownContent}
-                onChange={setMarkdownContent}
-                showMarkdownSyntax={showMarkdownSyntax}
-              />
+              <MarkdownEditor value={markdownContent} onChange={setMarkdownContent} showMarkdownSyntax={showMarkdownSyntax} />
 
               {/* Preview */}
-              <MarkdownPreview
-                content={markdownContent}
-                showMarkdownSyntax={showMarkdownSyntax}
-              />
-            </>
-          ) : (
-            <>
+              <MarkdownPreview content={markdownContent} showMarkdownSyntax={showMarkdownSyntax} />
+            </> : <>
               {/* Editor (smaller) */}
               <div className="w-1/3">
-                <MarkdownEditor
-                  value={markdownContent}
-                  onChange={setMarkdownContent}
-                  showMarkdownSyntax={showMarkdownSyntax}
-                />
+                <MarkdownEditor value={markdownContent} onChange={setMarkdownContent} showMarkdownSyntax={showMarkdownSyntax} />
               </div>
 
               {/* PDF Preview (larger) */}
               <div className="flex-1">
-                <PDFPreview
-                  content={markdownContent}
-                  showMarkdownSyntax={showMarkdownSyntax}
-                  websiteName={websiteName}
-                />
+                <PDFPreview content={markdownContent} showMarkdownSyntax={showMarkdownSyntax} websiteName={websiteName} />
               </div>
-            </>
-          )}
+            </>}
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
